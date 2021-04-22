@@ -12,7 +12,7 @@ typedef enum { E_SUCESSO, E_NOME_ARQUIVO=200, E_ABRIR_ARQUIVO, E_MEMORIA } e_ret
 
 struct _s_usuario // Total de 28 bytes
 {
-	char ign01[3]; // 3 primeiros bytes (verificar qua a aplicação deles
+	char ign01[3]; // 3 primeiros bytes (verificar qual a aplicação deles)
 	char senha[5]; // Exatamente 5 caracteres, sem o '\0'
 	char nome[8]; // Exatamente 8 caracteres, sem o '\0'
 	int uid[3]; // 12 bytes restantes, onde está o UID inclusive
@@ -59,13 +59,13 @@ int main(int argc, char *argv[])
 	printf("Tamanho do arquivo: %d\n", tamanho_arquivo);
 	#endif
 	
-	total_usuarios=tamanho_arquivo/28;
+	total_usuarios=tamanho_arquivo/28; /* Tamanho do registro de cada usuário é 28 bytes, conforme struct */
 	
 	#ifdef DEBUG
 	printf("Total de usuarios: %d\n", total_usuarios);
 	#endif
 	
-	if(!(usuarios = malloc(total_usuarios * sizeof(s_usuario)))) {
+	if(!(usuarios = (s_usuario *)malloc(total_usuarios * sizeof(s_usuario)))) {
 		return E_MEMORIA;
 	}
 	
