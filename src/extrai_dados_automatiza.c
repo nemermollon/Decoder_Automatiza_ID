@@ -89,7 +89,6 @@ int main(int argc, char *argv[])
 		for (j=0; j<3; j++) {
 			printf("%d\t", usuarios[i].uid[j]);
 		}
-		puts("");
 		#endif
 		
 		printf("UID: %d\n", usuarios[i].uid[2]);
